@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KCALM - AI-Powered Nutrition Tracking Made Simple</title>
+    <meta name="description" content="Track calories, achieve goals, live healthier with KCALM's AI-powered nutrition tracking app.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-green: #22c55e;
+            --primary-dark: #16a34a;
+            --secondary-green: #86efac;
+            --light-green: #f0fdf4;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --white: #ffffff;
+            --gray-bg: #f9fafb;
+            --accent: #3b82f6;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-green);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-green);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--light-green) 0%, var(--white) 100%);
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero .tagline {
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+            animation: fadeInUp 0.8s ease-out 0.2s;
+            animation-fill-mode: both;
+        }
+
+        .hero .sub-tagline {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.4s;
+            animation-fill-mode: both;
+        }
+
+        .hero-description {
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            animation: fadeInUp 0.8s ease-out 0.6s;
+            animation-fill-mode: both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.8s;
+            animation-fill-mode: both;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-green);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(34, 197, 94, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--text-dark);
+            color: var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: #374151;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(31, 41, 55, 0.3);
+        }
+
+        .app-preview {
+            margin-top: 4rem;
+            position: relative;
+            animation: fadeInUp 0.8s ease-out 1s;
+            animation-fill-mode: both;
+        }
+
+        .app-mockup {
+            width: 300px;
+            height: 600px;
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+            border-radius: 30px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-dark);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 12px;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--light-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 80px 0;
+            background: var(--gray-bg);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-green);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1.5rem;
+        }
+
+        .step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .step p {
+            color: var(--text-light);
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        /* Benefits */
+        .benefits {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            gap: 1rem;
+            align-items: start;
+        }
+
+        .benefit-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+
+        .benefit-content h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .benefit-content p {
+            color: var(--text-light);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background: var(--gray-bg);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .rating {
+            color: #fbbf24;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        /* FAQ */
+        .faq {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 1.5rem;
+        }
+
+        .faq-question {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-answer {
+            color: var(--text-light);
+        }
+
+        /* Newsletter */
+        .newsletter {
+            padding: 60px 0;
+            background: var(--primary-green);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .newsletter h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-form {
+            max-width: 500px;
+            margin: 2rem auto 0;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.8rem 1.2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .newsletter-form button {
+            padding: 0.8rem 2rem;
+            background: var(--text-dark);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            background: #374151;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            margin-bottom: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.8;
+        }
+
+        .legal-info {
+            color: #9ca3af;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .features-grid,
+            .steps,
+            .benefits-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Scroll animations */
+        .scroll-fade {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .scroll-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">KCALM</div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#benefits">Benefits</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Transform Your Nutrition Journey</h1>
+            <p class="tagline">AI-Powered Nutrition Tracking Made Simple</p>
+            <p class="sub-tagline">Track calories, achieve goals, live healthier</p>
+            <p class="hero-description">
+                Say goodbye to tedious food logging. KCALM uses cutting-edge AI to instantly recognize your meals, 
+                track nutrients, and help you achieve your health goals with personalized insights.
+            </p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M14.5 2C15.3 2 16 2.7 16 3.5V16.5C16 17.3 15.3 18 14.5 18H5.5C4.7 18 4 17.3 4 16.5V3.5C4 2.7 4.7 2 5.5 2H14.5ZM10 15.5C10.8 15.5 11.5 14.8 11.5 14C11.5 13.2 10.8 12.5 10 12.5C9.2 12.5 8.5 13.2 8.5 14C8.5 14.8 9.2 15.5 10 15.5Z"/>
+                    </svg>
+                    Download on App Store
+                </a>
+                <a href="#" class="btn btn-secondary">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M2 5.5L10 2L18 5.5V11C18 15.5 15 18.7 10 20C5 18.7 2 15.5 2 11V5.5ZM10 10L13.5 6.5L12.1 5.1L10 7.2L7.9 5.1L6.5 6.5L10 10Z"/>
+                    </svg>
+                    Get it on Google Play
+                </a>
+            </div>
+            <div class="app-preview">
+                <div class="app-mockup">
+                    App Preview
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title scroll-fade">Powerful Features for Your Health Journey</h2>
+            <div class="features-grid">
+                <div class="feature-card scroll-fade">
+                    <div class="feature-icon">📸</div>
+                    <h3>AI-Powered Food Recognition</h3>
+                    <p>Simply snap a photo and let our AI instantly identify foods and calculate nutritional values with remarkable accuracy.</p>
+                </div>
+                <div class="feature-card scroll-fade">
+                    <div class="feature-icon">💡</div>
+                    <h3>Personalized Insights</h3>
+                    <p>Get tailored recommendations based on your dietary patterns, goals, and nutritional needs for optimal health outcomes.</p>
+                </div>
+                <div class="feature-card scroll-fade">
+                    <div class="feature-icon">📊</div>
+                    <h3>Goal Tracking & Progress</h3>
+                    <p>Set custom goals and monitor your progress with intuitive charts and milestone celebrations to keep you motivated.</p>
+                </div>
+                <div class="feature-card scroll-fade">
+                    <div class="feature-icon">🍎</div>
+                    <h3>Comprehensive Food Database</h3>
+                    <p>Access millions of foods including restaurant meals, branded products, and home recipes with accurate nutritional data.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title scroll-fade">How It Works</h2>
+            <div class="steps">
+                <div class="step scroll-fade">
+                    <div class="step-number">1</div>
+                    <h3>Snap a Photo</h3>
+                    <p>Take a quick photo of your meal or scan a barcode. Our AI works instantly to identify everything on your plate.</p>
+                </div>
+                <div class="step scroll-fade">
+                    <div class="step-number">2</div>
+                    <h3>AI Identifies Food & Calories</h3>
+                    <p>Our advanced AI recognizes ingredients, portion sizes, and calculates accurate nutritional information in seconds.</p>
+                </div>
+                <div class="step scroll-fade">
+                    <div class="step-number">3</div>
+                    <h3>Track Progress Toward Goals</h3>
+                    <p>Monitor your daily intake, see trends over time, and receive personalized insights to help you reach your health goals.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="benefits" id="benefits">
+        <div class="container">
+            <h2 class="section-title scroll-fade">Why Choose KCALM?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item scroll-fade">
+                    <div class="benefit-icon">⏱️</div>
+                    <div class="benefit-content">
+                        <h4>Save Time</h4>
+                        <p>No more manual logging. Track your meals in seconds with our instant AI recognition technology.</p>
+                    </div>
+                </div>
+                <div class="benefit-item scroll-fade">
+                    <div class="benefit-icon">🎯</div>
+                    <div class="benefit-content">
+                        <h4>Make Informed Decisions</h4>
+                        <p>Understand exactly what you're eating with detailed nutritional breakdowns and smart suggestions.</p>
+                    </div>
+                </div>
+                <div class="benefit-item scroll-fade">
+                    <div class="benefit-icon">🌱</div>
+                    <div class="benefit-content">
+                        <h4>Achieve Sustainable Goals</h4>
+                        <p>Build healthy habits that last with realistic goal-setting and encouraging progress tracking.</p>
+                    </div>
+                </div>
+                <div class="benefit-item scroll-fade">
+                    <div class="benefit-icon">✨</div>
+                    <div class="benefit-content">
+                        <h4>Get Personalized Recommendations</h4>
+                        <p>Receive tailored advice based on your unique dietary needs, preferences, and health objectives.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title scroll-fade">What Our Users Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card scroll-fade">
+                    <div class="rating">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"KCALM has completely changed how I approach nutrition. The AI recognition is incredibly accurate and saves me so much time!"</p>
+                    <p class="testimonial-author">Sarah M.</p>
+                </div>
+                <div class="testimonial-card scroll-fade">
+                    <div class="rating">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Finally, an app that makes tracking calories effortless. I love the personalized insights and how easy it is to use."</p>
+                    <p class="testimonial-author">David L.</p>
+                </div>
+                <div class="testimonial-card scroll-fade">
+                    <div class="rating">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"The goal tracking feature keeps me motivated, and the AI recommendations have helped me make better food choices."</p>
+                    <p class="testimonial-author">Emma R.</p>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 2rem; color: var(--text-light);">
+                <strong>⭐ 5.0 Rating</strong> • <strong>10,000+</strong> Happy Users
+            </p>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2 class="section-title scroll-fade">Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item scroll-fade">
+                    <h3 class="faq-question">How accurate is the AI food recognition?</h3>
+                    <p class="faq-answer">Our AI achieves over 95% accuracy in food identification and portion estimation, continuously improving with user feedback.</p>
+                </div>
+                <div class="faq-item scroll-fade">
+                    <h3 class="faq-question">Is there a free version available?</h3>
+                    <p class="faq-answer">Yes! KCALM offers a comprehensive free tier with core features. Premium subscriptions unlock advanced analytics and personalized meal plans.</p>
+                </div>
+                <div class="faq-item scroll-fade">
+                    <h3 class="faq-question">Does it work offline?</h3>
+                    <p class="faq-answer">Basic tracking works offline, and data syncs when you reconnect. AI features require an internet connection for optimal performance.</p>
+                </div>
+                <div class="faq-item scroll-fade">
+                    <h3 class="faq-question">How is my data protected?</h3>
+                    <p class="faq-answer">We use bank-level encryption to protect your data. Your information is never shared with third parties without your explicit consent.</p>
+                </div>
+                <div class="faq-item scroll-fade">
+                    <h3 class="faq-question">Can I track specific dietary requirements?</h3>
+                    <p class="faq-answer">Absolutely! KCALM supports various dietary preferences including keto, vegan, gluten-free, and custom macro tracking.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Stay Updated with KCALM</h2>
+            <p>Get nutrition tips, app updates, and exclusive offers delivered to your inbox.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo" style="color: var(--primary-green); font-size: 2rem; margin-bottom: 1rem;">KCALM</div>
+                <p>Developed by KCALM LABS</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="mailto:support@kcalm.app">Contact</a>
+                </div>
+            </div>
+            <div class="legal-info">
+                <p>A product of 14A0 Pty Ltd</p>
+                <p>ACN 688 629 094</p>
+                <p>© 2025 14A0 Pty Ltd. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-fade').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Newsletter form handler
+        document.querySelector('.newsletter-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for subscribing! We\'ll keep you updated.');
+            e.target.reset();
+        });
+    </script>
+</body>
+</html>
