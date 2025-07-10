@@ -4,7 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KCALM - AI-Powered Nutrition Tracking Made Simple</title>
-    <meta name="description" content="Track calories, achieve goals, live healthier with KCALM's AI-powered nutrition tracking app.">
+    <meta name="description" content="Track calories effortlessly with AI. Snap a photo, get instant nutrition insights. Join 10,000+ users achieving their health goals.">
+    <meta property="og:title" content="KCALM - AI-Powered Nutrition Tracking Made Simple">
+    <meta property="og:description" content="Track calories effortlessly with AI. Snap a photo, get instant nutrition insights.">
+    <meta property="og:url" content="https://kcalm.app">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="KCALM">
+    <link rel="canonical" href="https://kcalm.app">
     <style>
         * {
             margin: 0;
@@ -13,24 +19,46 @@
         }
 
         :root {
-            --primary-green: #22c55e;
-            --primary-dark: #16a34a;
-            --secondary-green: #86efac;
-            --light-green: #f0fdf4;
-            --text-dark: #1f2937;
-            --text-light: #6b7280;
-            --white: #ffffff;
-            --gray-bg: #f9fafb;
-            --accent: #3b82f6;
+            /* Light mode colors - matching app */
+            --bg-primary: #F2F2F7;
+            --bg-secondary: #FFFFFF;
+            --text-primary: #000000;
+            --text-secondary: #8E8E93;
+            --text-tertiary: #C7C7CC;
+            
+            /* Food-friendly accent colors */
+            --accent-primary: #00C896;      /* Fresh mint green */
+            --accent-secondary: #FF3B30;    /* Appetizing red */
+            --accent-tertiary: #FF9F0A;     /* Warm amber */
+            --accent-success: #34C759;      /* Success green */
+            --accent-dark: #1C1C1E;         /* Deep black */
+            --accent-gradient-start: #00C896;
+            --accent-gradient-end: #00E5A0;
+            
+            /* UI colors */
+            --border-color: #E5E5EA;
+            --shadow-color: rgba(0, 0, 0, 0.04);
+            --shadow-hover: rgba(0, 0, 0, 0.08);
+            
+            /* Dark mode colors */
+            --dark-bg-primary: #000000;
+            --dark-bg-secondary: #1C1C1E;
+            --dark-text-primary: #FFFFFF;
+            --dark-text-secondary: #8E8E93;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', sans-serif;
+            font-size: 17px;
+            line-height: 1.47;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
         }
 
+        /* Container */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -39,208 +67,455 @@
 
         /* Header */
         header {
-            background: var(--white);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            background: rgba(242, 242, 247, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            border-bottom: 0.5px solid var(--border-color);
         }
 
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
+            padding: 12px 0;
         }
 
         .logo {
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--primary-green);
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 32px;
+            width: auto;
+            display: block;
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 32px;
             list-style: none;
+            align-items: center;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: var(--text-dark);
-            transition: color 0.3s;
+            color: var(--text-primary);
+            font-size: 16px;
+            font-weight: 400;
+            transition: opacity 0.3s;
         }
 
         .nav-links a:hover {
-            color: var(--primary-green);
+            opacity: 0.7;
+        }
+
+        .nav-cta {
+            background: var(--accent-primary);
+            color: white !important;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .nav-cta:hover {
+            opacity: 0.9 !important;
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--light-green) 0%, var(--white) 100%);
-            padding: 120px 0 80px;
-            text-align: center;
+            padding: 120px 0 60px;
+            background: var(--bg-primary);
+            position: relative;
+            overflow: hidden;
         }
 
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: var(--text-dark);
-            animation: fadeInUp 0.8s ease-out;
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -25%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, var(--accent-gradient-start) 0%, transparent 70%);
+            opacity: 0.05;
+            transform: rotate(-15deg);
         }
 
-        .hero .tagline {
-            font-size: 1.5rem;
-            color: var(--primary-green);
-            margin-bottom: 0.5rem;
-            animation: fadeInUp 0.8s ease-out 0.2s;
-            animation-fill-mode: both;
+        .hero::after {
+            content: 'KCALM';
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 120px;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            color: var(--accent-primary);
+            opacity: 0.03;
+            transform: rotate(-5deg);
+            z-index: 0;
         }
 
-        .hero .sub-tagline {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            margin-bottom: 2rem;
-            animation: fadeInUp 0.8s ease-out 0.4s;
-            animation-fill-mode: both;
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
         }
 
-        .hero-description {
-            max-width: 600px;
-            margin: 0 auto 3rem;
-            font-size: 1.1rem;
-            color: var(--text-light);
-            animation: fadeInUp 0.8s ease-out 0.6s;
-            animation-fill-mode: both;
+        .brand-badge {
+            display: inline-block;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: var(--accent-primary);
+            background: rgba(0, 200, 150, 0.1);
+            padding: 8px 20px;
+            border-radius: 100px;
+            margin-bottom: 20px;
+        }
+
+        .hero-text h1 {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+
+        .hero-text p {
+            font-size: 24px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            line-height: 1.4;
+        }
+
+        .hero-badges {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+
+        .badge-icon {
+            color: var(--accent-primary);
+            font-size: 20px;
         }
 
         .cta-buttons {
             display: flex;
-            gap: 1rem;
-            justify-content: center;
+            gap: 16px;
             flex-wrap: wrap;
-            animation: fadeInUp 0.8s ease-out 0.8s;
-            animation-fill-mode: both;
         }
 
         .btn {
-            padding: 1rem 2rem;
-            border-radius: 8px;
+            padding: 16px 32px;
+            border-radius: 12px;
             text-decoration: none;
             font-weight: 600;
+            font-size: 18px;
             transition: all 0.3s;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 8px;
+            border: none;
+            cursor: pointer;
         }
 
         .btn-primary {
-            background: var(--primary-green);
-            color: var(--white);
+            background: var(--accent-primary);
+            color: white;
         }
 
         .btn-primary:hover {
-            background: var(--primary-dark);
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(34, 197, 94, 0.3);
+            box-shadow: 0 12px 24px rgba(0, 200, 150, 0.25);
+            background: var(--accent-gradient-end);
         }
 
         .btn-secondary {
-            background: var(--text-dark);
-            color: var(--white);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
         }
 
         .btn-secondary:hover {
-            background: #374151;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(31, 41, 55, 0.3);
+            background: var(--bg-primary);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
         }
 
-        .app-preview {
-            margin-top: 4rem;
+        /* Phone Mockup Carousel */
+        .hero-visual {
             position: relative;
-            animation: fadeInUp 0.8s ease-out 1s;
-            animation-fill-mode: both;
+            height: 700px;
         }
 
-        .app-mockup {
-            width: 300px;
-            height: 600px;
-            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
-            border-radius: 30px;
-            margin: 0 auto;
+        .phone-carousel {
+            position: relative;
+            width: 100%;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--white);
-            font-size: 1.5rem;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .phone-frame {
+            position: relative;
+            width: 320px;
+            height: 650px;
+            background: #1C1C1E;
+            border-radius: 40px;
+            padding: 10px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            border-radius: 30px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .screenshot {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .screenshot.active {
+            opacity: 1;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--text-tertiary);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .carousel-dot.active {
+            width: 24px;
+            border-radius: 4px;
+            background: var(--text-primary);
         }
 
         /* Features Section */
         .features {
-            padding: 80px 0;
-            background: var(--white);
+            padding: 100px 0;
+            background: var(--bg-secondary);
+        }
+
+        .features-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-label {
+            font-size: 16px;
+            color: var(--accent-primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 16px;
         }
 
         .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: var(--text-dark);
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
         }
 
-        .features-grid {
+        .section-subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
         }
 
         .feature-card {
+            background: var(--bg-primary);
+            padding: 40px 32px;
+            border-radius: 20px;
             text-align: center;
-            padding: 2rem;
-            border-radius: 12px;
-            transition: transform 0.3s;
+            transition: all 0.3s;
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
         }
 
         .feature-icon {
             width: 80px;
             height: 80px;
-            background: var(--light-green);
-            border-radius: 50%;
+            margin: 0 auto 24px;
+            background: var(--bg-primary);
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-size: 2rem;
+            font-size: 36px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
         .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-dark);
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 12px;
         }
 
         .feature-card p {
-            color: var(--text-light);
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* AI Analysis Showcase */
+        .ai-showcase {
+            padding: 100px 0;
+            background: var(--bg-primary);
+        }
+
+        .showcase-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .showcase-text h2 {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .showcase-text p {
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .macro-stats {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .macro-item {
+            flex: 1;
+            padding: 20px;
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .macro-value {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .macro-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .macro-carbs { color: var(--accent-tertiary); }
+        .macro-protein { color: var(--accent-secondary); }
+        .macro-fat { color: var(--accent-primary); }
+
+        .showcase-visual {
+            position: relative;
+        }
+
+        .analysis-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .analysis-item {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .analysis-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .analysis-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .analysis-item:nth-child(1) {
+            grid-column: span 2;
+            height: 300px;
+        }
+
+        .analysis-item:nth-child(2),
+        .analysis-item:nth-child(3) {
+            height: 200px;
         }
 
         /* How It Works */
         .how-it-works {
-            padding: 80px 0;
-            background: var(--gray-bg);
+            padding: 100px 0;
+            background: var(--bg-secondary);
         }
 
-        .steps {
+        .steps-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
         }
 
         .step {
@@ -251,222 +526,322 @@
         .step-number {
             width: 60px;
             height: 60px;
-            background: var(--primary-green);
-            color: var(--white);
+            background: var(--bg-primary);
+            border: 3px solid var(--accent-primary);
+            color: var(--accent-primary);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin: 0 auto 1.5rem;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0 auto 24px;
         }
 
         .step h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: var(--text-dark);
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 12px;
         }
 
         .step p {
-            color: var(--text-light);
-            max-width: 300px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            right: -20px;
+            width: 40px;
+            height: 2px;
+            background: var(--border-color);
+        }
+
+        /* Theme Toggle Showcase */
+        .theme-showcase {
+            padding: 100px 0;
+            background: var(--bg-primary);
+        }
+
+        .theme-toggle-container {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .theme-toggle {
+            display: inline-flex;
+            background: var(--bg-secondary);
+            border-radius: 100px;
+            padding: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-option {
+            padding: 12px 24px;
+            border-radius: 100px;
+            background: transparent;
+            border: none;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: var(--text-secondary);
+        }
+
+        .theme-option.active {
+            background: var(--text-primary);
+            color: var(--bg-primary);
+        }
+
+        .theme-gallery {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
-        /* Benefits */
-        .benefits {
-            padding: 80px 0;
-            background: var(--white);
-        }
-
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .benefit-item {
-            display: flex;
-            gap: 1rem;
-            align-items: start;
-        }
-
-        .benefit-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--primary-green);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
+        .theme-phone {
+            position: relative;
+            width: 240px;
+            height: 490px;
+            background: #1C1C1E;
+            border-radius: 35px;
+            padding: 8px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s;
             flex-shrink: 0;
         }
 
-        .benefit-content h4 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-dark);
+        .theme-phone:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
         }
 
-        .benefit-content p {
-            color: var(--text-light);
+        .theme-screen {
+            border-radius: 27px;
+            overflow: hidden;
+            height: 100%;
+            width: 100%;
+            background: #000;
+            position: relative;
         }
 
-        /* Testimonials */
-        .testimonials {
+        .theme-screen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+        }
+
+        .theme-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 40px;
+        }
+
+        .theme-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--text-tertiary);
+            transition: all 0.3s;
+        }
+
+        .theme-indicator.active {
+            width: 24px;
+            border-radius: 4px;
+            background: var(--text-primary);
+        }
+
+        /* Social Proof */
+        .social-proof {
             padding: 80px 0;
-            background: var(--gray-bg);
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .testimonial-card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .rating {
-            color: #fbbf24;
-            margin-bottom: 1rem;
-        }
-
-        .testimonial-text {
-            font-style: italic;
-            color: var(--text-light);
-            margin-bottom: 1.5rem;
-        }
-
-        .testimonial-author {
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-
-        /* FAQ */
-        .faq {
-            padding: 80px 0;
-            background: var(--white);
-        }
-
-        .faq-list {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            margin-bottom: 1.5rem;
-            border-bottom: 1px solid #e5e7eb;
-            padding-bottom: 1.5rem;
-        }
-
-        .faq-question {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .faq-answer {
-            color: var(--text-light);
-        }
-
-        /* Newsletter */
-        .newsletter {
-            padding: 60px 0;
-            background: var(--primary-green);
-            color: var(--white);
+            background: var(--bg-secondary);
             text-align: center;
         }
 
-        .newsletter h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
-        .newsletter-form {
-            max-width: 500px;
-            margin: 2rem auto 0;
-            display: flex;
-            gap: 1rem;
+        .metric {
+            text-align: center;
         }
 
-        .newsletter-form input {
-            flex: 1;
-            padding: 0.8rem 1.2rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
+        .metric-value {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--accent-primary);
+            margin-bottom: 8px;
         }
 
-        .newsletter-form button {
-            padding: 0.8rem 2rem;
-            background: var(--text-dark);
-            color: var(--white);
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
+        .metric-label {
+            font-size: 16px;
+            color: var(--text-secondary);
         }
 
-        .newsletter-form button:hover {
-            background: #374151;
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--accent-gradient-start) 0%, var(--accent-gradient-end) 100%);
+            text-align: center;
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .cta-section p {
+            font-size: 24px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .cta-section .cta-buttons {
+            justify-content: center;
+        }
+
+        .cta-section .btn-primary {
+            background: white;
+            color: var(--accent-primary);
+        }
+
+        .cta-section .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
         }
 
         /* Footer */
         footer {
-            background: var(--text-dark);
-            color: var(--white);
-            padding: 40px 0;
-            text-align: center;
+            background: var(--text-primary);
+            color: white;
+            padding: 60px 0 40px;
         }
 
         .footer-content {
-            margin-bottom: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .footer-logo {
+            display: inline-flex;
+            background: white;
+            padding: 12px 20px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+        }
+
+        .footer-brand img {
+            height: 40px;
+            width: auto;
+            display: block;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 16px;
         }
 
         .footer-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .footer-column h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .footer-column ul {
+            list-style: none;
             display: flex;
-            gap: 2rem;
-            justify-content: center;
-            margin: 1.5rem 0;
+            flex-direction: column;
+            gap: 12px;
         }
 
-        .footer-links a {
-            color: var(--white);
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
-            transition: opacity 0.3s;
+            font-size: 16px;
+            transition: color 0.3s;
         }
 
-        .footer-links a:hover {
-            opacity: 0.8;
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .footer-download h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .app-store-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .app-store-btn {
+            display: inline-block;
+            height: 48px;
+        }
+
+        .app-store-btn img {
+            height: 100%;
+            width: auto;
+        }
+
+        .footer-bottom {
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .legal-info {
-            color: #9ca3af;
-            font-size: 0.9rem;
-            margin-top: 2rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
         }
 
         /* Animations */
-        @keyframes fadeInUp {
+        @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
+        }
+
+        .animate-in {
+            animation: fadeIn 0.6s ease-out forwards;
         }
 
         /* Mobile Responsive */
@@ -475,46 +850,73 @@
                 display: none;
             }
 
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero .tagline {
-                font-size: 1.2rem;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .features-grid,
-            .steps,
-            .benefits-grid,
-            .testimonials-grid {
+            .hero-content {
                 grid-template-columns: 1fr;
+                text-align: center;
             }
 
-            .newsletter-form {
-                flex-direction: column;
+            .hero-text h1 {
+                font-size: 36px;
+            }
+
+            .hero-text p {
+                font-size: 18px;
+            }
+
+            .hero-visual {
+                height: 500px;
+                margin-top: 40px;
+            }
+
+            .phone-frame {
+                width: 260px;
+                height: 530px;
+            }
+
+            .feature-grid,
+            .steps-container,
+            .metrics {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .showcase-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .step:not(:last-child)::after {
+                display: none;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
             }
 
             .footer-links {
-                flex-direction: column;
-                gap: 1rem;
+                grid-template-columns: 2fr 1fr;
             }
-        }
 
-        /* Scroll animations */
-        .scroll-fade {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
 
-        .scroll-fade.visible {
-            opacity: 1;
-            transform: translateY(0);
+            .macro-stats {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .theme-gallery {
+                gap: 16px;
+            }
+
+            .theme-phone {
+                width: 200px;
+                height: 410px;
+            }
         }
     </style>
 </head>
@@ -522,12 +924,14 @@
     <!-- Header -->
     <header>
         <nav class="container">
-            <div class="logo">KCALM</div>
+            <div class="logo">
+                <img src="image.png" alt="KCALM Logo">
+            </div>
             <ul class="nav-links">
                 <li><a href="#features">Features</a></li>
                 <li><a href="#how-it-works">How It Works</a></li>
-                <li><a href="#benefits">Benefits</a></li>
-                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#ai-analysis">AI Analysis</a></li>
+                <li><a href="#download" class="nav-cta">Get KCALM App</a></li>
             </ul>
         </nav>
     </header>
@@ -535,30 +939,56 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>Transform Your Nutrition Journey</h1>
-            <p class="tagline">AI-Powered Nutrition Tracking Made Simple</p>
-            <p class="sub-tagline">Track calories, achieve goals, live healthier</p>
-            <p class="hero-description">
-                Say goodbye to tedious food logging. KCALM uses cutting-edge AI to instantly recognize your meals, 
-                track nutrients, and help you achieve your health goals with personalized insights.
-            </p>
-            <div class="cta-buttons">
-                <a href="#" class="btn btn-primary">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M14.5 2C15.3 2 16 2.7 16 3.5V16.5C16 17.3 15.3 18 14.5 18H5.5C4.7 18 4 17.3 4 16.5V3.5C4 2.7 4.7 2 5.5 2H14.5ZM10 15.5C10.8 15.5 11.5 14.8 11.5 14C11.5 13.2 10.8 12.5 10 12.5C9.2 12.5 8.5 13.2 8.5 14C8.5 14.8 9.2 15.5 10 15.5Z"/>
-                    </svg>
-                    Download on App Store
-                </a>
-                <a href="#" class="btn btn-secondary">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M2 5.5L10 2L18 5.5V11C18 15.5 15 18.7 10 20C5 18.7 2 15.5 2 11V5.5ZM10 10L13.5 6.5L12.1 5.1L10 7.2L7.9 5.1L6.5 6.5L10 10Z"/>
-                    </svg>
-                    Get it on Google Play
-                </a>
-            </div>
-            <div class="app-preview">
-                <div class="app-mockup">
-                    App Preview
+            <div class="hero-content">
+                <div class="hero-text animate-in">
+                    <div class="brand-badge">KCALM</div>
+                    <h1>Track Nutrition<br>The Effortless Way</h1>
+                    <p>Snap a photo. Get instant AI analysis. Achieve your health goals.</p>
+                    
+                    <div class="hero-badges">
+                        <div class="badge">
+                            <span class="badge-icon">★</span>
+                            <span>4.9 Rating for KCALM</span>
+                        </div>
+                        <div class="badge">
+                            <span class="badge-icon">👥</span>
+                            <span>10,000+ KCALM Users</span>
+                        </div>
+                    </div>
+
+                    <div class="cta-buttons">
+                        <a href="#" class="btn btn-primary">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M14.5 2C15.3 2 16 2.7 16 3.5V16.5C16 17.3 15.3 18 14.5 18H5.5C4.7 18 4 17.3 4 16.5V3.5C4 2.7 4.7 2 5.5 2H14.5ZM10 15.5C10.8 15.5 11.5 14.8 11.5 14C11.5 13.2 10.8 12.5 10 12.5C9.2 12.5 8.5 13.2 8.5 14C8.5 14.8 9.2 15.5 10 15.5Z"/>
+                            </svg>
+                            Download for iOS
+                        </a>
+                        <a href="#" class="btn btn-secondary">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M2 5.5L10 2L18 5.5V11C18 15.5 15 18.7 10 20C5 18.7 2 15.5 2 11V5.5ZM10 10L13.5 6.5L12.1 5.1L10 7.2L7.9 5.1L6.5 6.5L10 10Z"/>
+                            </svg>
+                            Get for Android
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="phone-carousel">
+                        <div class="phone-frame">
+                            <div class="phone-screen">
+                                <img src="app photos/darkmode/7271752118903_.pic_hd.jpg" alt="KCALM App Screenshot" class="screenshot active">
+                                <img src="app photos/darkmode/7281752118908_.pic_hd.jpg" alt="KCALM App Screenshot" class="screenshot">
+                                <img src="app photos/darkmode/7291752118910_.pic_hd.jpg" alt="KCALM App Screenshot" class="screenshot">
+                                <img src="app photos/darkmode/7301752118912_.pic_hd.jpg" alt="KCALM App Screenshot" class="screenshot">
+                            </div>
+                        </div>
+                        <div class="carousel-nav">
+                            <div class="carousel-dot active" data-slide="0"></div>
+                            <div class="carousel-dot" data-slide="1"></div>
+                            <div class="carousel-dot" data-slide="2"></div>
+                            <div class="carousel-dot" data-slide="3"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -567,27 +997,86 @@
     <!-- Features Section -->
     <section class="features" id="features">
         <div class="container">
-            <h2 class="section-title scroll-fade">Powerful Features for Your Health Journey</h2>
-            <div class="features-grid">
-                <div class="feature-card scroll-fade">
+            <div class="features-header">
+                <p class="section-label">KCALM FEATURES</p>
+                <h2 class="section-title">Everything You Need for<br>Effortless Nutrition Tracking</h2>
+                <p class="section-subtitle">Powered by advanced AI to make healthy eating simple and sustainable</p>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card animate-in">
                     <div class="feature-icon">📸</div>
-                    <h3>AI-Powered Food Recognition</h3>
-                    <p>Simply snap a photo and let our AI instantly identify foods and calculate nutritional values with remarkable accuracy.</p>
+                    <h3>Instant Food Recognition</h3>
+                    <p>Simply snap a photo and our AI instantly identifies foods, portions, and calculates complete nutritional information.</p>
                 </div>
-                <div class="feature-card scroll-fade">
-                    <div class="feature-icon">💡</div>
-                    <h3>Personalized Insights</h3>
-                    <p>Get tailored recommendations based on your dietary patterns, goals, and nutritional needs for optimal health outcomes.</p>
+                <div class="feature-card animate-in">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Smart Goal Tracking</h3>
+                    <p>Set personalized calorie and macro goals. Track your progress with beautiful visualizations and daily insights.</p>
                 </div>
-                <div class="feature-card scroll-fade">
+                <div class="feature-card animate-in">
+                    <div class="feature-icon">💬</div>
+                    <h3>AI Nutrition Assistant</h3>
+                    <p>Get instant answers to nutrition questions and personalized meal suggestions based on your dietary preferences.</p>
+                </div>
+                <div class="feature-card animate-in">
                     <div class="feature-icon">📊</div>
-                    <h3>Goal Tracking & Progress</h3>
-                    <p>Set custom goals and monitor your progress with intuitive charts and milestone celebrations to keep you motivated.</p>
+                    <h3>Detailed Analytics</h3>
+                    <p>Track trends over time with comprehensive charts for calories, macros, weight, and nutritional intake.</p>
                 </div>
-                <div class="feature-card scroll-fade">
-                    <div class="feature-icon">🍎</div>
-                    <h3>Comprehensive Food Database</h3>
-                    <p>Access millions of foods including restaurant meals, branded products, and home recipes with accurate nutritional data.</p>
+                <div class="feature-card animate-in">
+                    <div class="feature-icon">🌙</div>
+                    <h3>Light & Dark Mode</h3>
+                    <p>Beautiful interfaces optimized for both day and night use. Easy on your eyes, anytime.</p>
+                </div>
+                <div class="feature-card animate-in">
+                    <div class="feature-icon">🔐</div>
+                    <h3>Privacy First</h3>
+                    <p>Your data stays yours. No ads, no selling data. Just pure focus on your health journey.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Analysis Showcase -->
+    <section class="ai-showcase" id="ai-analysis">
+        <div class="container">
+            <div class="showcase-content">
+                <div class="showcase-text animate-in">
+                    <p class="section-label">KCALM AI ANALYSIS</p>
+                    <h2>See What You're Really Eating</h2>
+                    <p>KCALM's advanced AI doesn't just count calories. It understands your food, breaks down nutrients, and helps you make informed decisions about every meal.</p>
+                    
+                    <div class="macro-stats">
+                        <div class="macro-item">
+                            <div class="macro-value macro-carbs">93g</div>
+                            <div class="macro-label">Carbs</div>
+                        </div>
+                        <div class="macro-item">
+                            <div class="macro-value macro-protein">38g</div>
+                            <div class="macro-label">Protein</div>
+                        </div>
+                        <div class="macro-item">
+                            <div class="macro-value macro-fat">15g</div>
+                            <div class="macro-label">Fat</div>
+                        </div>
+                    </div>
+
+                    <a href="#download" class="btn btn-primary">Try It Free</a>
+                </div>
+
+                <div class="showcase-visual animate-in">
+                    <div class="analysis-gallery">
+                        <div class="analysis-item">
+                            <img src="app photos/analysis/7351752119489_.pic.jpg" alt="Food Analysis">
+                        </div>
+                        <div class="analysis-item">
+                            <img src="app photos/analysis/7361752119490_.pic.jpg" alt="Food Analysis">
+                        </div>
+                        <div class="analysis-item">
+                            <img src="app photos/analysis/7371752119492_.pic.jpg" alt="Food Analysis">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -596,129 +1085,111 @@
     <!-- How It Works -->
     <section class="how-it-works" id="how-it-works">
         <div class="container">
-            <h2 class="section-title scroll-fade">How It Works</h2>
-            <div class="steps">
-                <div class="step scroll-fade">
+            <div class="features-header">
+                <p class="section-label">How It Works</p>
+                <h2 class="section-title">Three Simple Steps to<br>Better Nutrition</h2>
+            </div>
+
+            <div class="steps-container">
+                <div class="step animate-in">
                     <div class="step-number">1</div>
-                    <h3>Snap a Photo</h3>
-                    <p>Take a quick photo of your meal or scan a barcode. Our AI works instantly to identify everything on your plate.</p>
+                    <h3>Snap Your Meal</h3>
+                    <p>Take a quick photo of your food. Our AI works with any cuisine, homemade or restaurant meals.</p>
                 </div>
-                <div class="step scroll-fade">
+                <div class="step animate-in">
                     <div class="step-number">2</div>
-                    <h3>AI Identifies Food & Calories</h3>
-                    <p>Our advanced AI recognizes ingredients, portion sizes, and calculates accurate nutritional information in seconds.</p>
+                    <h3>Get Instant Analysis</h3>
+                    <p>AI identifies every ingredient and calculates accurate calories, macros, and nutrients in seconds.</p>
                 </div>
-                <div class="step scroll-fade">
+                <div class="step animate-in">
                     <div class="step-number">3</div>
-                    <h3>Track Progress Toward Goals</h3>
-                    <p>Monitor your daily intake, see trends over time, and receive personalized insights to help you reach your health goals.</p>
+                    <h3>Track Your Progress</h3>
+                    <p>See how each meal fits your daily goals. Get insights and suggestions to optimize your nutrition.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Benefits -->
-    <section class="benefits" id="benefits">
+    <!-- Theme Showcase -->
+    <section class="theme-showcase">
         <div class="container">
-            <h2 class="section-title scroll-fade">Why Choose KCALM?</h2>
-            <div class="benefits-grid">
-                <div class="benefit-item scroll-fade">
-                    <div class="benefit-icon">⏱️</div>
-                    <div class="benefit-content">
-                        <h4>Save Time</h4>
-                        <p>No more manual logging. Track your meals in seconds with our instant AI recognition technology.</p>
+            <div class="features-header">
+                <p class="section-label">Beautiful Design</p>
+                <h2 class="section-title">Stunning in Light or Dark</h2>
+                <p class="section-subtitle">Experience KCALM in your preferred theme</p>
+            </div>
+
+            <div class="theme-toggle-container">
+                <div class="theme-toggle">
+                    <button class="theme-option active" data-theme="dark">Dark Mode</button>
+                    <button class="theme-option" data-theme="light">Light Mode</button>
+                </div>
+            </div>
+
+            <div class="theme-gallery" id="themeGallery">
+                <!-- Dark mode screenshots (default) -->
+                <div class="theme-phone animate-in">
+                    <div class="theme-screen">
+                        <img src="app photos/darkmode/7311752118914_.pic_hd.jpg" alt="Dark Mode - Weight Tracking">
                     </div>
                 </div>
-                <div class="benefit-item scroll-fade">
-                    <div class="benefit-icon">🎯</div>
-                    <div class="benefit-content">
-                        <h4>Make Informed Decisions</h4>
-                        <p>Understand exactly what you're eating with detailed nutritional breakdowns and smart suggestions.</p>
+                <div class="theme-phone animate-in">
+                    <div class="theme-screen">
+                        <img src="app photos/darkmode/7321752118916_.pic_hd.jpg" alt="Dark Mode - Nutrition Data">
                     </div>
                 </div>
-                <div class="benefit-item scroll-fade">
-                    <div class="benefit-icon">🌱</div>
-                    <div class="benefit-content">
-                        <h4>Achieve Sustainable Goals</h4>
-                        <p>Build healthy habits that last with realistic goal-setting and encouraging progress tracking.</p>
-                    </div>
-                </div>
-                <div class="benefit-item scroll-fade">
-                    <div class="benefit-icon">✨</div>
-                    <div class="benefit-content">
-                        <h4>Get Personalized Recommendations</h4>
-                        <p>Receive tailored advice based on your unique dietary needs, preferences, and health objectives.</p>
+                <div class="theme-phone animate-in">
+                    <div class="theme-screen">
+                        <img src="app photos/darkmode/7331752118918_.pic_hd.jpg" alt="Dark Mode - Food Analysis">
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials -->
-    <section class="testimonials">
+    <!-- Social Proof -->
+    <section class="social-proof">
         <div class="container">
-            <h2 class="section-title scroll-fade">What Our Users Say</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial-card scroll-fade">
-                    <div class="rating">⭐⭐⭐⭐⭐</div>
-                    <p class="testimonial-text">"KCALM has completely changed how I approach nutrition. The AI recognition is incredibly accurate and saves me so much time!"</p>
-                    <p class="testimonial-author">Sarah M.</p>
+            <div class="metrics">
+                <div class="metric animate-in">
+                    <div class="metric-value">10K+</div>
+                    <div class="metric-label">Active Users</div>
                 </div>
-                <div class="testimonial-card scroll-fade">
-                    <div class="rating">⭐⭐⭐⭐⭐</div>
-                    <p class="testimonial-text">"Finally, an app that makes tracking calories effortless. I love the personalized insights and how easy it is to use."</p>
-                    <p class="testimonial-author">David L.</p>
+                <div class="metric animate-in">
+                    <div class="metric-value">500K+</div>
+                    <div class="metric-label">Meals Tracked</div>
                 </div>
-                <div class="testimonial-card scroll-fade">
-                    <div class="rating">⭐⭐⭐⭐⭐</div>
-                    <p class="testimonial-text">"The goal tracking feature keeps me motivated, and the AI recommendations have helped me make better food choices."</p>
-                    <p class="testimonial-author">Emma R.</p>
+                <div class="metric animate-in">
+                    <div class="metric-value">95%</div>
+                    <div class="metric-label">AI Accuracy</div>
                 </div>
-            </div>
-            <p style="text-align: center; margin-top: 2rem; color: var(--text-light);">
-                <strong>⭐ 5.0 Rating</strong> • <strong>10,000+</strong> Happy Users
-            </p>
-        </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="faq" id="faq">
-        <div class="container">
-            <h2 class="section-title scroll-fade">Frequently Asked Questions</h2>
-            <div class="faq-list">
-                <div class="faq-item scroll-fade">
-                    <h3 class="faq-question">How accurate is the AI food recognition?</h3>
-                    <p class="faq-answer">Our AI achieves over 95% accuracy in food identification and portion estimation, continuously improving with user feedback.</p>
-                </div>
-                <div class="faq-item scroll-fade">
-                    <h3 class="faq-question">Is there a free version available?</h3>
-                    <p class="faq-answer">Yes! KCALM offers a comprehensive free tier with core features. Premium subscriptions unlock advanced analytics and personalized meal plans.</p>
-                </div>
-                <div class="faq-item scroll-fade">
-                    <h3 class="faq-question">Does it work offline?</h3>
-                    <p class="faq-answer">Basic tracking works offline, and data syncs when you reconnect. AI features require an internet connection for optimal performance.</p>
-                </div>
-                <div class="faq-item scroll-fade">
-                    <h3 class="faq-question">How is my data protected?</h3>
-                    <p class="faq-answer">We use bank-level encryption to protect your data. Your information is never shared with third parties without your explicit consent.</p>
-                </div>
-                <div class="faq-item scroll-fade">
-                    <h3 class="faq-question">Can I track specific dietary requirements?</h3>
-                    <p class="faq-answer">Absolutely! KCALM supports various dietary preferences including keto, vegan, gluten-free, and custom macro tracking.</p>
+                <div class="metric animate-in">
+                    <div class="metric-value">4.9★</div>
+                    <div class="metric-label">App Store Rating</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Newsletter -->
-    <section class="newsletter">
+    <!-- CTA Section -->
+    <section class="cta-section" id="download">
         <div class="container">
-            <h2>Stay Updated with KCALM</h2>
-            <p>Get nutrition tips, app updates, and exclusive offers delivered to your inbox.</p>
-            <form class="newsletter-form">
-                <input type="email" placeholder="Enter your email" required>
-                <button type="submit">Subscribe</button>
-            </form>
+            <h2 class="animate-in">Ready to Transform Your Nutrition with KCALM?</h2>
+            <p class="animate-in">Join thousands achieving their health goals with the KCALM app</p>
+            <div class="cta-buttons animate-in">
+                <a href="#" class="btn btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M14.5 2C15.3 2 16 2.7 16 3.5V16.5C16 17.3 15.3 18 14.5 18H5.5C4.7 18 4 17.3 4 16.5V3.5C4 2.7 4.7 2 5.5 2H14.5ZM10 15.5C10.8 15.5 11.5 14.8 11.5 14C11.5 13.2 10.8 12.5 10 12.5C9.2 12.5 8.5 13.2 8.5 14C8.5 14.8 9.2 15.5 10 15.5Z"/>
+                    </svg>
+                    Download for iOS
+                </a>
+                <a href="#" class="btn btn-secondary">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M2 5.5L10 2L18 5.5V11C18 15.5 15 18.7 10 20C5 18.7 2 15.5 2 11V5.5ZM10 10L13.5 6.5L12.1 5.1L10 7.2L7.9 5.1L6.5 6.5L10 10Z"/>
+                    </svg>
+                    Get for Android
+                </a>
+            </div>
         </div>
     </section>
 
@@ -726,24 +1197,70 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="logo" style="color: var(--primary-green); font-size: 2rem; margin-bottom: 1rem;">KCALM</div>
-                <p>Developed by KCALM LABS</p>
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="image.png" alt="KCALM Logo">
+                    </div>
+                    <p>AI-powered nutrition tracking<br>made simple.</p>
+                </div>
+
                 <div class="footer-links">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
-                    <a href="mailto:support@kcalm.app">Contact</a>
+                    <div class="footer-column">
+                        <h4>Product</h4>
+                        <ul>
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="#how-it-works">How It Works</a></li>
+                            <li><a href="#ai-analysis">AI Analysis</a></li>
+                            <li><a href="#">Pricing</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Press</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="mailto:support@kcalm.app">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-download">
+                    <h4>Download Now</h4>
+                    <div class="app-store-buttons">
+                        <a href="#" class="app-store-btn">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="Download on App Store">
+                        </a>
+                        <a href="#" class="app-store-btn">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play">
+                        </a>
+                    </div>
                 </div>
             </div>
-            <div class="legal-info">
-                <p>A product of 14A0 Pty Ltd</p>
-                <p>ACN 688 629 094</p>
-                <p>© 2025 14A0 Pty Ltd. All rights reserved.</p>
+
+            <div class="footer-bottom">
+                <div class="legal-info">
+                    <p>© 2025 14A0 Pty Ltd (ACN 688 629 094). All rights reserved.</p>
+                    <p>Developed by KCALM LABS</p>
+                </div>
+                <div class="social-links">
+                    <!-- Add social media links here if needed -->
+                </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Smooth scroll for navigation links
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -757,7 +1274,65 @@
             });
         });
 
-        // Scroll animations
+        // Hero carousel
+        const screenshots = document.querySelectorAll('.screenshot');
+        const dots = document.querySelectorAll('.carousel-dot');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            screenshots.forEach(s => s.classList.remove('active'));
+            dots.forEach(d => d.classList.remove('active'));
+            
+            screenshots[index].classList.add('active');
+            dots[index].classList.add('active');
+            currentSlide = index;
+        }
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => showSlide(index));
+        });
+
+        // Auto-rotate carousel
+        setInterval(() => {
+            const nextSlide = (currentSlide + 1) % screenshots.length;
+            showSlide(nextSlide);
+        }, 4000);
+
+        // Theme toggle
+        const themeOptions = document.querySelectorAll('.theme-option');
+        const themeGallery = document.getElementById('themeGallery');
+
+        const darkModeImages = [
+            'app photos/darkmode/7311752118914_.pic_hd.jpg',
+            'app photos/darkmode/7321752118916_.pic_hd.jpg',
+            'app photos/darkmode/7331752118918_.pic_hd.jpg'
+        ];
+
+        const lightModeImages = [
+            'app photos/lightmode/7381752119931_.pic_hd.jpg',
+            'app photos/lightmode/7391752119933_.pic_hd.jpg',
+            'app photos/lightmode/7401752119935_.pic_hd.jpg'
+        ];
+
+        themeOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                themeOptions.forEach(o => o.classList.remove('active'));
+                option.classList.add('active');
+                
+                const theme = option.dataset.theme;
+                const images = theme === 'dark' ? darkModeImages : lightModeImages;
+                
+                themeGallery.innerHTML = images.map(src => `
+                    <div class="theme-phone animate-in">
+                        <div class="theme-screen">
+                            <img src="${src}" alt="${theme === 'dark' ? 'Dark' : 'Light'} Mode">
+                        </div>
+                    </div>
+                `).join('');
+            });
+        });
+
+        // Intersection Observer for animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -766,20 +1341,19 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        entry.target.style.transition = 'all 0.6s ease-out';
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, 100);
                 }
             });
         }, observerOptions);
 
-        document.querySelectorAll('.scroll-fade').forEach(el => {
+        document.querySelectorAll('.animate-in').forEach(el => {
             observer.observe(el);
-        });
-
-        // Newsletter form handler
-        document.querySelector('.newsletter-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Thank you for subscribing! We\'ll keep you updated.');
-            e.target.reset();
         });
     </script>
 </body>
