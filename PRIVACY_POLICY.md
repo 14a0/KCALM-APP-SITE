@@ -22,7 +22,7 @@ For the purposes of this Privacy Policy:
 
 - **Application** refers to KCALM, the software program provided by the Company.
 
-- **Company** (referred to as either "the Company", "We", "Us" or "Our" in this Agreement) refers to 14a0 Pty Ltd, 39 Newton Road, Blacktown, 2148.
+- **Company** (referred to as either "the Company", "We", "Us" or "Our" in this Agreement) refers to 14a0 Pty Ltd, Sydney, NSW, Australia.
 
 - **Country** refers to: New South Wales, Australia
 

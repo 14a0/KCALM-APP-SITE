@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms and Conditions - KCALM</title>
+    <meta name="description" content="KCALM Terms and Conditions - Understand your rights and responsibilities when using our service.">
+    <meta property="og:title" content="Terms and Conditions - KCALM">
+    <meta property="og:description" content="Understand your rights and responsibilities when using KCALM.">
+    <meta property="og:url" content="https://kcalm.app/terms">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="KCALM">
+    <link rel="canonical" href="https://kcalm.app/terms">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Light mode colors - matching app */
+            --bg-primary: #F2F2F7;
+            --bg-secondary: #FFFFFF;
+            --text-primary: #000000;
+            --text-secondary: #8E8E93;
+            --text-tertiary: #C7C7CC;
+            
+            /* Food-friendly accent colors */
+            --accent-primary: #00C896;      /* Fresh mint green */
+            --accent-secondary: #FF3B30;    /* Appetizing red */
+            --accent-tertiary: #FF9F0A;     /* Warm amber */
+            --accent-success: #34C759;      /* Success green */
+            --accent-dark: #1C1C1E;         /* Deep black */
+            --accent-gradient-start: #00C896;
+            --accent-gradient-end: #00E5A0;
+            
+            /* UI colors */
+            --border-color: #E5E5EA;
+            --shadow-color: rgba(0, 0, 0, 0.04);
+            --shadow-hover: rgba(0, 0, 0, 0.08);
+            
+            /* Dark mode colors */
+            --dark-bg-primary: #000000;
+            --dark-bg-secondary: #1C1C1E;
+            --dark-text-primary: #FFFFFF;
+            --dark-text-secondary: #8E8E93;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', sans-serif;
+            font-size: 17px;
+            line-height: 1.47;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(242, 242, 247, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 0.5px solid var(--border-color);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 32px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 16px;
+            font-weight: 400;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+
+        .nav-cta {
+            background: var(--accent-primary);
+            color: white !important;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .nav-cta:hover {
+            opacity: 0.9 !important;
+        }
+
+        /* Terms Content */
+        .terms-content {
+            padding: 120px 0 80px;
+            background: var(--bg-secondary);
+            min-height: 100vh;
+        }
+
+        .terms-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .terms-header {
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .terms-header h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .last-updated {
+            color: var(--text-secondary);
+            font-size: 18px;
+        }
+
+        .terms-section {
+            margin-bottom: 48px;
+        }
+
+        .terms-section h2 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+
+        .terms-section h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            margin-top: 32px;
+            color: var(--text-primary);
+        }
+
+        .terms-section h4 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            margin-top: 24px;
+            color: var(--text-primary);
+        }
+
+        .terms-section p {
+            font-size: 17px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .terms-section ul {
+            margin: 16px 0;
+            padding-left: 24px;
+        }
+
+        .terms-section li {
+            font-size: 17px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .terms-section strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .disclaimer-box {
+            background: rgba(255, 59, 48, 0.1);
+            border: 1px solid rgba(255, 59, 48, 0.2);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+
+        .disclaimer-box strong {
+            color: var(--accent-secondary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-primary);
+            color: white;
+            padding: 60px 0 40px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .footer-logo {
+            display: inline-flex;
+            background: white;
+            padding: 12px 20px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+        }
+
+        .footer-brand img {
+            height: 40px;
+            width: auto;
+            display: block;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 16px;
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .footer-column h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .footer-download h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .app-store-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .app-store-btn img {
+            height: 40px;
+            width: auto;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .legal-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .legal-info p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .terms-header h1 {
+                font-size: 36px;
+            }
+
+            .terms-section h2 {
+                font-size: 24px;
+            }
+
+            .terms-section h3 {
+                font-size: 20px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-links {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">
+                <img src="image.png" alt="KCALM Logo">
+            </a>
+            <ul class="nav-links">
+                <li><a href="/#features">Features</a></li>
+                <li><a href="/#how-it-works">How It Works</a></li>
+                <li><a href="/#ai-analysis">AI Analysis</a></li>
+                <li><a href="/#download" class="nav-cta">Download</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Terms Content -->
+    <main class="terms-content">
+        <div class="terms-container">
+            <div class="terms-header">
+                <h1>Terms and Conditions</h1>
+                <p class="last-updated">Last updated: July 12, 2025</p>
+            </div>
+
+            <div class="terms-section">
+                <p>Please read these terms and conditions carefully before using Our Service.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>Interpretation and Definitions</h2>
+                
+                <h3>Interpretation</h3>
+                <p>The words of which the initial letter is capitalized have meanings defined under the following conditions. The following definitions shall have the same meaning regardless of whether they appear in singular or in plural.</p>
+
+                <h3>Definitions</h3>
+                <p>For the purposes of these Terms and Conditions:</p>
+                <ul>
+                    <li><strong>Application</strong> means the software program provided by the Company downloaded by You on any electronic device, named KCALM</li>
+                    <li><strong>Application Store</strong> means the digital distribution service operated and developed by Apple Inc. (Apple App Store) or Google Inc. (Google Play Store) in which the Application has been downloaded.</li>
+                    <li><strong>Affiliate</strong> means an entity that controls, is controlled by or is under common control with a party, where "control" means ownership of 50% or more of the shares, equity interest or other securities entitled to vote for election of directors or other managing authority.</li>
+                    <li><strong>Country</strong> refers to: New South Wales, Australia</li>
+                    <li><strong>Company</strong> (referred to as either "the Company", "We", "Us" or "Our" in this Agreement) refers to 14a0 Pty Ltd, Sydney, NSW, Australia.</li>
+                    <li><strong>Device</strong> means any device that can access the Service such as a computer, a cellphone or a digital tablet.</li>
+                    <li><strong>Service</strong> refers to the Application.</li>
+                    <li><strong>Terms and Conditions</strong> (also referred as "Terms") mean these Terms and Conditions that form the entire agreement between You and the Company regarding the use of the Service.</li>
+                    <li><strong>Third-party Social Media Service</strong> means any services or content (including data, information, products or services) provided by a third-party that may be displayed, included or made available by the Service.</li>
+                    <li><strong>You</strong> means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.</li>
+                </ul>
+            </div>
+
+            <div class="terms-section">
+                <h2>Acknowledgment</h2>
+                <p>These are the Terms and Conditions governing the use of this Service and the agreement that operates between You and the Company. These Terms and Conditions set out the rights and obligations of all users regarding the use of the Service.</p>
+                <p>Your access to and use of the Service is conditioned on Your acceptance of and compliance with these Terms and Conditions. These Terms and Conditions apply to all visitors, users and others who access or use the Service.</p>
+                <p>By accessing or using the Service You agree to be bound by these Terms and Conditions. If You disagree with any part of these Terms and Conditions then You may not access the Service.</p>
+                <p>You represent that you are over the age of 13. The Company does not permit those under 13 to use the Service.</p>
+                <p>Your access to and use of the Service is also conditioned on Your acceptance of and compliance with the Privacy Policy of the Company. Our Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your personal information when You use the Application and tells You about Your privacy rights and how the law protects You. Please read Our Privacy Policy carefully before using Our Service.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>License to Use</h2>
+                <p>We grant you a non-exclusive, non-transferable, revocable license to use the KCALM application on your Device(s) in accordance with these Terms and Conditions and the Application Store's terms of service.</p>
+                <p>You agree that:</p>
+                <ul>
+                    <li>You will use the Application only for personal, non-commercial purposes</li>
+                    <li>You will not distribute or make the Application available over a network where it could be used by multiple devices at the same time</li>
+                    <li>You will not rent, lease, lend, sell, redistribute or sublicense the Application</li>
+                    <li>You will not copy (except as expressly permitted by this license), decompile, reverse engineer, disassemble, attempt to derive the source code of, modify, or create derivative works of the Application</li>
+                </ul>
+            </div>
+
+            <div class="terms-section">
+                <h2>Health and Medical Disclaimer</h2>
+                <div class="disclaimer-box">
+                    <p><strong>IMPORTANT: The KCALM application is for informational purposes only and is not intended to be a substitute for professional medical advice, diagnosis, or treatment.</strong></p>
+                </div>
+                <p>The nutritional information and calorie estimates provided by KCALM are approximations based on AI analysis and should not be relied upon for medical decisions. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition or dietary needs.</p>
+                <p>Never disregard professional medical advice or delay in seeking it because of something you have read or analyzed through the KCALM application.</p>
+                <p>We do not guarantee the accuracy, completeness, or usefulness of any nutritional information provided, and we are not responsible for any errors or omissions in the content.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>Acceptable Use Policy</h2>
+                <p>You agree not to use the Service to:</p>
+                <ul>
+                    <li>Upload, post, or transmit any content that is unlawful, harmful, threatening, abusive, harassing, defamatory, vulgar, obscene, or otherwise objectionable</li>
+                    <li>Impersonate any person or entity or falsely state or otherwise misrepresent your affiliation with a person or entity</li>
+                    <li>Upload, post, or transmit any content that you do not have a right to transmit under any law or under contractual or fiduciary relationships</li>
+                    <li>Upload, post, or transmit any material that contains software viruses or any other computer code designed to interrupt, destroy, or limit the functionality of any computer software or hardware</li>
+                    <li>Interfere with or disrupt the Service or servers or networks connected to the Service</li>
+                    <li>Use the Service for any illegal or unauthorized purpose</li>
+                    <li>Attempt to gain unauthorized access to any portion of the Service or any other systems or networks connected to the Service</li>
+                    <li>Use any robot, spider, scraper, or other automated means to access the Service</li>
+                    <li>Reverse engineer, decompile, or disassemble any portion of the Service</li>
+                </ul>
+            </div>
+
+            <div class="terms-section">
+                <h2>Subscriptions and Refunds</h2>
+
+                <h3>Subscription Terms</h3>
+                <p>KCALM may offer subscription-based features or premium content. If you choose to subscribe:</p>
+                <ul>
+                    <li>Subscription fees are billed in advance on a recurring basis (monthly or annually)</li>
+                    <li>All subscriptions automatically renew unless cancelled before the renewal date</li>
+                    <li>You can manage and cancel your subscription through your Application Store account settings</li>
+                </ul>
+
+                <h3>Refunds</h3>
+                <p>All subscription purchases and in-app purchases are handled directly through the Apple App Store or Google Play Store. Refund requests must be submitted through the respective Application Store in accordance with their refund policies:</p>
+                <ul>
+                    <li><strong>Apple App Store</strong>: Request refunds through Apple's Report a Problem page</li>
+                    <li><strong>Google Play Store</strong>: Request refunds through Google Play's refund request system</li>
+                </ul>
+                <p>We do not directly handle refund requests as all transactions are processed by the Application Stores.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>User Content</h2>
+                <p>By submitting food photos or other content to KCALM, you grant us a worldwide, non-exclusive, royalty-free license to use, reproduce, modify, and analyze such content solely for the purpose of providing and improving our Service.</p>
+                <p>You represent and warrant that:</p>
+                <ul>
+                    <li>You own or have the necessary rights to the content you submit</li>
+                    <li>Your content does not infringe any third-party rights</li>
+                    <li>Your content complies with these Terms and Conditions</li>
+                </ul>
+            </div>
+
+            <div class="terms-section">
+                <h2>Intellectual Property</h2>
+                <p>The Service and its original content, features, and functionality are and will remain the exclusive property of 14a0 Pty Ltd and its licensors. The Service is protected by copyright, trademark, and other laws of both Australia and foreign countries. Our trademarks and trade dress may not be used in connection with any product or service without our prior written consent.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>Third-Party Services</h2>
+                <p>Our Service uses the following third-party services:</p>
+                <ul>
+                    <li>OpenAI/Anthropic Claude for AI-powered food analysis</li>
+                    <li>Supabase for data storage and authentication</li>
+                    <li>Expo for push notifications</li>
+                </ul>
+                <p>These third-party services have their own terms and privacy policies. We are not responsible for the practices or content of these third-party services.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>Limitation of Liability</h2>
+                <p><strong>To the maximum extent permitted by applicable law, in no event shall the Company or its suppliers be liable for any special, incidental, indirect, or consequential damages whatsoever</strong> (including, but not limited to, damages for loss of profits, loss of data or other information, for business interruption, for personal injury, loss of privacy arising out of or in any way related to the use of or inability to use the Service, third-party software and/or third-party hardware used with the Service, or otherwise in connection with any provision of this Terms), even if the Company or any supplier has been advised of the possibility of such damages and even if the remedy fails of its essential purpose.</p>
+                <p>Notwithstanding any damages that You might incur, the entire liability of the Company and any of its suppliers under any provision of this Terms and Your exclusive remedy for all of the foregoing shall be limited to the amount actually paid by You through the Service or $100 AUD if You haven't purchased anything through the Service.</p>
+                <p>Some jurisdictions do not allow the exclusion of certain types of warranties or limitations on applicable statutory rights of a consumer, so some or all of the above exclusions and limitations may not apply to You.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>"AS IS" and "AS AVAILABLE" Disclaimer</h2>
+                <p>The Service is provided to You "AS IS" and "AS AVAILABLE" and with all faults and defects without warranty of any kind. To the maximum extent permitted under applicable law, the Company expressly disclaims all warranties, whether express, implied, statutory or otherwise, with respect to the Service, including all implied warranties of merchantability, fitness for a particular purpose, title and non-infringement.</p>
+                <p>The Company does not warrant that:</p>
+                <ul>
+                    <li>The Service will meet Your requirements</li>
+                    <li>The Service will be uninterrupted, timely, secure, or error-free</li>
+                    <li>The results obtained from the Service will be accurate or reliable</li>
+                    <li>Any errors in the Service will be corrected</li>
+                </ul>
+            </div>
+
+            <div class="terms-section">
+                <h2>Indemnification</h2>
+                <p>You agree to defend, indemnify, and hold harmless the Company and its affiliates, officers, directors, employees, and agents from and against any claims, liabilities, damages, judgments, awards, losses, costs, expenses, or fees (including reasonable attorneys' fees) arising out of or relating to your violation of these Terms and Conditions or your use of the Service.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>Termination</h2>
+                <p>We may terminate or suspend Your access immediately, without prior notice or liability, for any reason whatsoever, including without limitation if You breach these Terms and Conditions.</p>
+                <p>Upon termination, Your right to use the Service will cease immediately. All provisions of these Terms which by their nature should survive termination shall survive termination.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>Governing Law</h2>
+                <p>These Terms shall be governed and construed in accordance with the laws of New South Wales, Australia, without regard to its conflict of law provisions.</p>
+                <p>Any disputes arising out of or in connection with these Terms shall be subject to the exclusive jurisdiction of the courts of New South Wales, Australia.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>Disputes Resolution</h2>
+                <p>If You have any concern or dispute about the Service, You agree to first try to resolve the dispute informally by contacting the Company at support@kcalm.app.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>For European Union (EU) Users</h2>
+                <p>If You are a European Union consumer, you will benefit from any mandatory provisions of the law of the country in which You are resident.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>United States Legal Compliance</h2>
+                <p>You represent and warrant that (i) You are not located in a country that is subject to the United States government embargo, or that has been designated by the United States government as a "terrorist supporting" country, and (ii) You are not listed on any United States government list of prohibited or restricted parties.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>Severability and Waiver</h2>
+
+                <h3>Severability</h3>
+                <p>If any provision of these Terms is held to be unenforceable or invalid, such provision will be changed and interpreted to accomplish the objectives of such provision to the greatest extent possible under applicable law and the remaining provisions will continue in full force and effect.</p>
+
+                <h3>Waiver</h3>
+                <p>Except as provided herein, the failure to exercise a right or to require performance of an obligation under these Terms shall not affect a party's ability to exercise such right or require such performance at any time thereafter nor shall the waiver of a breach constitute a waiver of any subsequent breach.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>Changes to These Terms and Conditions</h2>
+                <p>We reserve the right, at Our sole discretion, to modify or replace these Terms at any time. If a revision is material We will make reasonable efforts to provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be determined at Our sole discretion.</p>
+                <p>By continuing to access or use Our Service after those revisions become effective, You agree to be bound by the revised terms. If You do not agree to the new terms, in whole or in part, please stop using the Application and the Service.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2>Contact Us</h2>
+                <p>If you have any questions about these Terms and Conditions, You can contact us:</p>
+                <ul>
+                    <li>By email: support@kcalm.app</li>
+                    <li>By visiting our website: <a href="https://kcalm.app">https://kcalm.app</a></li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="image.png" alt="KCALM Logo">
+                    </div>
+                    <p>AI-powered nutrition tracking<br>made simple.</p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Product</h4>
+                        <ul>
+                            <li><a href="/#features">Features</a></li>
+                            <li><a href="/#how-it-works">How It Works</a></li>
+                            <li><a href="/#ai-analysis">AI Analysis</a></li>
+                            <li><a href="#">Pricing</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Press</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="/privacy.html">Privacy Policy</a></li>
+                            <li><a href="/terms.html">Terms of Service</a></li>
+                            <li><a href="mailto:support@kcalm.app">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-download">
+                    <h4>Download Now</h4>
+                    <div class="app-store-buttons">
+                        <a href="#" class="app-store-btn">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="Download on App Store">
+                        </a>
+                        <a href="#" class="app-store-btn">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="legal-info">
+                    <p>© 2025 14A0 Pty Ltd (ACN 688 629 094). All rights reserved.</p>
+                    <p>Developed by KCALM LABS</p>
+                </div>
+                <div class="social-links">
+                    <!-- Add social media links here if needed -->
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for internal links
+        document.querySelectorAll('a[href^="/#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                // Navigate to home page with hash
+                window.location.href = this.getAttribute('href');
+            });
+        });
+    </script>
+</body>
+</html>
