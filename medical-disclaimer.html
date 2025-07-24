@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Disclaimer - KCALM</title>
+    <style>
+        :root {
+            --primary: #007AFF;
+            --text-primary: #1C1C1E;
+            --text-secondary: #8E8E93;
+            --background: #FFFFFF;
+            --surface: #F2F2F7;
+            --border: #E5E5EA;
+            --success: #34C759;
+            --warning: #FF9500;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text-primary: #F2F2F7;
+                --text-secondary: #AEAEB2;
+                --background: #000000;
+                --surface: #1C1C1E;
+                --border: #38383A;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--background);
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 680px;
+            width: 100%;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #007AFF 0%, #5856D6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 32px;
+            letter-spacing: -0.8px;
+        }
+
+        .notice-card {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 32px;
+            border: 1px solid var(--border);
+        }
+
+        .notice-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .icon::before {
+            content: "!";
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .notice-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: -0.4px;
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 12px;
+            color: var(--text-secondary);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(0, 122, 255, 0.08), rgba(88, 86, 214, 0.08));
+            border: 1px solid rgba(0, 122, 255, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+            color: var(--text-primary);
+        }
+
+        .cta-section {
+            text-align: center;
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 32px;
+            border-radius: 24px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 122, 255, 0.3);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 64px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        @media (max-width: 640px) {
+            h1 { font-size: 28px; }
+            .container { padding: 0 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">KCALM</div>
+            <div class="subtitle">Nutrition Intelligence</div>
+        </header>
+
+        <h1>Medical & Health Information Disclaimer</h1>
+
+        <div class="notice-card">
+            <div class="notice-header">
+                <div class="icon"></div>
+                <div class="notice-title">Important Notice</div>
+            </div>
+            <p style="margin-bottom: 0;">
+                KCALM provides nutritional calculations and wellness insights based on peer-reviewed scientific research. 
+                This information is for educational purposes only and should not replace professional medical advice.
+            </p>
+        </div>
+
+        <section class="section">
+            <h2>Scope of Service</h2>
+            <p>KCALM is designed to help you understand and track your nutrition through:</p>
+            <ul>
+                <li>Evidence-based caloric calculations using established scientific formulas</li>
+                <li>Macronutrient distribution based on recognized nutritional guidelines</li>
+                <li>Food analysis powered by advanced AI technology</li>
+                <li>General wellness insights derived from your dietary patterns</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Medical Disclaimer</h2>
+            <p>The information provided by KCALM:</p>
+            <ul>
+                <li>Is not intended to diagnose, treat, cure, or prevent any disease</li>
+                <li>Should not be used as a substitute for professional medical advice</li>
+                <li>May not be suitable for individuals with specific medical conditions</li>
+                <li>Is based on population averages and may not reflect individual needs</li>
+            </ul>
+        </section>
+
+        <div class="highlight-box">
+            <p>
+                <strong>Always consult with qualified healthcare professionals</strong> before making significant changes to your diet, 
+                especially if you have pre-existing health conditions, are pregnant or nursing, or take medications.
+            </p>
+        </div>
+
+        <section class="section">
+            <h2>Individual Variations</h2>
+            <p>
+                Our calculations are estimates based on scientific research and population data. 
+                Individual nutritional needs can vary significantly based on:
+            </p>
+            <ul>
+                <li>Genetics and metabolic differences</li>
+                <li>Medical conditions and medications</li>
+                <li>Physical activity levels and type</li>
+                <li>Age, hormones, and life stage</li>
+                <li>Environmental and lifestyle factors</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Accuracy & Limitations</h2>
+            <p>
+                While we strive for accuracy using validated scientific methods, please understand that:
+            </p>
+            <ul>
+                <li>Food analysis results are estimates and may vary from actual values</li>
+                <li>Caloric formulas represent population averages</li>
+                <li>Individual metabolism can differ by ±20% from calculations</li>
+                <li>Nutritional databases may contain inaccuracies</li>
+            </ul>
+        </section>
+
+        <div class="cta-section">
+            <a href="/citations" class="cta-button">View Scientific Citations</a>
+        </div>
+
+        <footer class="footer">
+            <p>
+                © 2024 KCALM. Empowering informed nutrition choices through science.<br>
+                <a href="/">Back to App</a> · <a href="/citations">Citations</a> · <a href="/privacy">Privacy</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
