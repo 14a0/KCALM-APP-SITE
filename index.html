@@ -1007,6 +1007,94 @@
             gap: 8px;
         }
 
+        /* Email Display */
+        .email-display {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--accent-primary);
+            border-radius: 12px;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .email-display.show {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .email-display-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .email-copy-container {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .email-text {
+            flex: 1;
+            padding: 14px 18px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--accent-primary);
+            user-select: all;
+        }
+
+        .copy-btn {
+            padding: 14px 24px;
+            background: var(--accent-primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .copy-btn:hover {
+            background: var(--accent-gradient-end);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 200, 150, 0.3);
+        }
+
+        .copy-btn:active {
+            transform: translateY(0);
+        }
+
+        .copy-btn.copied {
+            background: var(--accent-success);
+        }
+
+        .email-instructions {
+            margin-top: 12px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
         /* Enhanced Card Interactions */
         .feature-card {
             position: relative;
@@ -1190,6 +1278,21 @@
                 text-align: center;
             }
 
+            .email-copy-container {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .copy-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .email-text {
+                text-align: center;
+                font-size: 15px;
+            }
+
             .feature-grid,
             .steps-container,
             .metrics {
@@ -1277,15 +1380,32 @@
                     </div>
 
                     <div class="cta-buttons">
-                        <a href="mailto:support@kcalm.app?subject=TestFlight Beta Access Request&body=Hi KCALM Team,%0D%0A%0D%0AI would like to join the TestFlight beta program.%0D%0A%0D%0AThank you!" class="btn btn-primary">
+                        <button onclick="showEmail('heroEmail')" class="btn btn-primary">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
                                 <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
                                 <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
                             </svg>
                             Request Beta Access
-                        </a>
+                        </button>
                     </div>
                     <div class="testflight-note">Get free credits when you join TestFlight beta</div>
+
+                    <div class="email-display" id="heroEmail">
+                        <div class="email-display-title">Send your request to:</div>
+                        <div class="email-copy-container">
+                            <div class="email-text">support@kcalm.app</div>
+                            <button onclick="copyEmail('heroEmail')" class="copy-btn" id="heroEmailCopyBtn">
+                                <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"/>
+                                    <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"/>
+                                </svg>
+                                <span class="copy-text">Copy</span>
+                            </button>
+                        </div>
+                        <div class="email-instructions">
+                            Email us to request TestFlight beta access. Include your Apple ID email in the message!
+                        </div>
+                    </div>
                 </div>
 
                 <div class="hero-visual">
@@ -1378,13 +1498,30 @@
                         </div>
                     </div>
 
-                    <a href="mailto:support@kcalm.app?subject=TestFlight Beta Access Request&body=Hi KCALM Team,%0D%0A%0D%0AI would like to join the TestFlight beta program.%0D%0A%0D%0AThank you!" class="btn btn-primary">
+                    <button onclick="showEmail('aiEmail')" class="btn btn-primary">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
                             <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
                             <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
                         </svg>
                         Request Beta Access
-                    </a>
+                    </button>
+
+                    <div class="email-display" id="aiEmail">
+                        <div class="email-display-title">Send your request to:</div>
+                        <div class="email-copy-container">
+                            <div class="email-text">support@kcalm.app</div>
+                            <button onclick="copyEmail('aiEmail')" class="copy-btn" id="aiEmailCopyBtn">
+                                <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"/>
+                                    <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"/>
+                                </svg>
+                                <span class="copy-text">Copy</span>
+                            </button>
+                        </div>
+                        <div class="email-instructions">
+                            Email us to request TestFlight beta access. Include your Apple ID email in the message!
+                        </div>
+                    </div>
                 </div>
 
                 <div class="showcase-visual animate-in">
@@ -1501,13 +1638,30 @@
                 <p style="color: var(--text-secondary); font-size: 18px; margin-bottom: 32px;">Join our exclusive TestFlight beta and be among the first to experience the future of nutrition tracking</p>
 
                 <div class="cta-buttons" style="justify-content: center; margin-bottom: 20px;">
-                    <a href="mailto:support@kcalm.app?subject=TestFlight Beta Access Request&body=Hi KCALM Team,%0D%0A%0D%0AI would like to join the TestFlight beta program.%0D%0A%0D%0AThank you!" class="btn btn-primary" style="font-size: 18px;">
+                    <button onclick="showEmail('ctaEmail')" class="btn btn-primary" style="font-size: 18px;">
                         <svg width="22" height="22" viewBox="0 0 20 20" fill="currentColor">
                             <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
                             <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
                         </svg>
-                        Email for Beta Access
-                    </a>
+                        Get Beta Access
+                    </button>
+                </div>
+
+                <div class="email-display" id="ctaEmail" style="max-width: 100%;">
+                    <div class="email-display-title">Send your request to:</div>
+                    <div class="email-copy-container">
+                        <div class="email-text">support@kcalm.app</div>
+                        <button onclick="copyEmail('ctaEmail')" class="copy-btn" id="ctaEmailCopyBtn">
+                            <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"/>
+                                <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"/>
+                            </svg>
+                            <span class="copy-text">Copy</span>
+                        </button>
+                    </div>
+                    <div class="email-instructions">
+                        Email us to request TestFlight beta access. Include your Apple ID email in the message!
+                    </div>
                 </div>
 
                 <div class="testflight-note" style="justify-content: center; color: var(--text-secondary);">
@@ -1565,14 +1719,31 @@
 
                 <div class="footer-download">
                     <h4>Join Beta</h4>
-                    <p style="color: rgba(255, 255, 255, 0.7); font-size: 14px; margin-bottom: 16px;">Email us for TestFlight access + free credits</p>
-                    <a href="mailto:support@kcalm.app?subject=TestFlight Beta Access Request&body=Hi KCALM Team,%0D%0A%0D%0AI would like to join the TestFlight beta program.%0D%0A%0D%0AThank you!" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 14px 24px;">
+                    <p style="color: rgba(255, 255, 255, 0.7); font-size: 14px; margin-bottom: 16px;">Click to get email address</p>
+                    <button onclick="showEmail('footerEmail')" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 14px 24px;">
                         <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor" style="margin-right: 6px;">
                             <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
                             <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
                         </svg>
                         Request Access
-                    </a>
+                    </button>
+
+                    <div class="email-display" id="footerEmail" style="margin-top: 16px; background: rgba(255,255,255,0.05); border-color: var(--accent-primary);">
+                        <div class="email-display-title" style="color: white;">Send your request to:</div>
+                        <div class="email-copy-container">
+                            <div class="email-text" style="background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); color: white;">support@kcalm.app</div>
+                            <button onclick="copyEmail('footerEmail')" class="copy-btn" id="footerEmailCopyBtn">
+                                <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"/>
+                                    <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"/>
+                                </svg>
+                                <span class="copy-text">Copy</span>
+                            </button>
+                        </div>
+                        <div class="email-instructions" style="color: rgba(255,255,255,0.7);">
+                            Include your Apple ID email!
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -1589,6 +1760,45 @@
     </footer>
 
     <script>
+        // Show email display
+        function showEmail(elementId) {
+            const emailDisplay = document.getElementById(elementId);
+            emailDisplay.classList.toggle('show');
+
+            // Scroll to element
+            if (emailDisplay.classList.contains('show')) {
+                setTimeout(() => {
+                    emailDisplay.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+            }
+        }
+
+        // Copy email to clipboard
+        function copyEmail(elementId) {
+            const email = 'support@kcalm.app';
+            const button = document.getElementById(elementId + 'CopyBtn');
+            const copyText = button.querySelector('.copy-text');
+
+            // Copy to clipboard
+            navigator.clipboard.writeText(email).then(() => {
+                // Update button state
+                button.classList.add('copied');
+                copyText.textContent = 'Copied!';
+
+                // Reset after 2 seconds
+                setTimeout(() => {
+                    button.classList.remove('copied');
+                    copyText.textContent = 'Copy';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                copyText.textContent = 'Error';
+                setTimeout(() => {
+                    copyText.textContent = 'Copy';
+                }, 2000);
+            });
+        }
+
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
