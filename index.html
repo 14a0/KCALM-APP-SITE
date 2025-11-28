@@ -235,6 +235,8 @@
             gap: 8px;
             border: none;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
 
         .btn-primary {
@@ -246,6 +248,10 @@
             transform: translateY(-2px);
             box-shadow: 0 12px 24px rgba(0, 200, 150, 0.25);
             background: var(--accent-gradient-end);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
         }
 
         .btn-secondary {
@@ -841,16 +847,6 @@
             font-weight: 600;
             letter-spacing: 0.05em;
             box-shadow: 0 4px 12px rgba(0, 200, 150, 0.25);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                box-shadow: 0 4px 12px rgba(0, 200, 150, 0.25);
-            }
-            50% {
-                box-shadow: 0 4px 20px rgba(0, 200, 150, 0.45);
-            }
         }
 
         .beta-dot {
@@ -858,12 +854,6 @@
             height: 8px;
             background: white;
             border-radius: 50%;
-            animation: blink 1.5s infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
         }
 
         /* Email Signup Form */
@@ -1009,11 +999,6 @@
             gap: 8px;
         }
 
-        .testflight-note::before {
-            content: '✈️';
-            font-size: 16px;
-        }
-
         /* Enhanced Card Interactions */
         .feature-card {
             position: relative;
@@ -1059,14 +1044,10 @@
             box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.2);
         }
 
-        /* Floating Elements Animation */
+        /* Floating Elements Animation - Removed for hero, kept for theme section */
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-20px); }
-        }
-
-        .phone-frame {
-            animation: float 6s ease-in-out infinite;
         }
 
         .theme-phone:nth-child(1) {
@@ -1081,69 +1062,20 @@
             animation: float 5.5s ease-in-out infinite 1s;
         }
 
-        /* Shimmer Effect */
-        @keyframes shimmer {
-            0% { background-position: -1000px 0; }
-            100% { background-position: 1000px 0; }
-        }
+        /* Shimmer Effect - Removed for cleaner look */
 
-        .btn-primary::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            background-size: 200% 100%;
-            animation: shimmer 3s infinite;
-            pointer-events: none;
-        }
-
-        /* Animations */
+        /* Animations - Simplified for cleaner experience */
         @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(20px);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
             }
         }
 
         .animate-in {
-            animation: fadeIn 0.6s ease-out forwards;
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .slide-in-left {
-            animation: slideInLeft 0.8s ease-out forwards;
-        }
-
-        .slide-in-right {
-            animation: slideInRight 0.8s ease-out forwards;
+            animation: fadeIn 0.4s ease-out forwards;
         }
 
         /* Mobile Responsive */
@@ -1159,7 +1091,7 @@
             .hero-content {
                 grid-template-columns: 1fr;
                 text-align: center;
-                gap: 20px;
+                gap: 40px;
             }
 
             .hero-text h1 {
@@ -1172,25 +1104,34 @@
 
             .cta-buttons {
                 margin-bottom: 20px;
+                justify-content: center;
             }
 
             .hero-visual {
-                height: 400px;
-                margin-top: 40px;
+                height: 500px;
+                margin-top: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
 
             .phone-frame {
-                width: 200px;
-                height: 410px;
-                padding: 6px;
+                width: 260px;
+                height: 530px;
+                padding: 8px;
             }
 
             .phone-screen {
-                border-radius: 20px;
+                border-radius: 25px;
+            }
+
+            .screenshot {
+                object-fit: cover;
+                object-position: top center;
             }
 
             .carousel-nav {
-                bottom: -30px;
+                bottom: -40px;
             }
 
             .hero::after {
@@ -1203,15 +1144,22 @@
                 flex-direction: column;
                 gap: 12px;
                 margin-bottom: 30px;
+                align-items: center;
             }
 
             .badge {
                 font-size: 14px;
+                justify-content: center;
             }
 
-            .brand-badge {
-                font-size: 16px;
-                padding: 6px 16px;
+            .beta-badge {
+                font-size: 13px;
+                padding: 6px 14px;
+            }
+
+            .testflight-note {
+                justify-content: center;
+                text-align: center;
             }
 
             .feature-grid,
@@ -1281,7 +1229,7 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <div class="hero-text animate-in slide-in-left">
+                <div class="hero-text animate-in">
                     <div class="beta-badge">
                         <span class="beta-dot"></span>
                         NOW IN BETA
@@ -1292,11 +1240,11 @@
                     <div class="hero-badges">
                         <div class="badge">
                             <span class="badge-icon">★</span>
-                            <span>Beta Testers Love It</span>
+                            <span>4.9 Beta Rating</span>
                         </div>
                         <div class="badge">
-                            <span class="badge-icon">✈️</span>
-                            <span>Limited TestFlight Spots</span>
+                            <span class="badge-icon">👥</span>
+                            <span>500+ Testers</span>
                         </div>
                     </div>
 
@@ -1309,7 +1257,7 @@
                             Request Beta Access
                         </a>
                     </div>
-                    <div class="testflight-note">Email us to join • Get free credits when you sign up!</div>
+                    <div class="testflight-note">Get free credits when you join TestFlight beta</div>
                 </div>
 
                 <div class="hero-visual">
@@ -1382,7 +1330,7 @@
     <section class="ai-showcase" id="ai-analysis">
         <div class="container">
             <div class="showcase-content">
-                <div class="showcase-text animate-in slide-in-left">
+                <div class="showcase-text animate-in">
                     <p class="section-label">KCALM AI ANALYSIS</p>
                     <h2>See What You're Really Eating</h2>
                     <p>KCALM's advanced AI doesn't just count calories. It understands your food, breaks down nutrients, and helps you make informed decisions about every meal.</p>
