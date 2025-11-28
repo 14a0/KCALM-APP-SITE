@@ -314,11 +314,12 @@
 
         .carousel-nav {
             position: absolute;
-            bottom: -40px;
+            bottom: -50px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
             gap: 8px;
+            z-index: 10;
         }
 
         .carousel-dot {
@@ -1085,7 +1086,7 @@
             }
 
             .hero {
-                padding: 100px 0 40px;
+                padding: 100px 0 60px;
             }
 
             .hero-content {
@@ -1108,21 +1109,32 @@
             }
 
             .hero-visual {
-                height: 500px;
+                min-height: auto;
+                height: auto;
                 margin-top: 20px;
+                margin-bottom: 60px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                position: relative;
+            }
+
+            .phone-carousel {
+                position: relative;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
             }
 
             .phone-frame {
-                width: 260px;
-                height: 530px;
+                width: 240px;
+                height: 490px;
                 padding: 8px;
             }
 
             .phone-screen {
-                border-radius: 25px;
+                border-radius: 23px;
             }
 
             .screenshot {
@@ -1131,7 +1143,10 @@
             }
 
             .carousel-nav {
-                bottom: -40px;
+                position: relative;
+                bottom: auto;
+                margin-top: 20px;
+                transform: none;
             }
 
             .hero::after {
